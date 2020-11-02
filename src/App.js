@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import Header from './Components/Header/Header'
-import AddTodo from './Components/AddTodo/AddTodo'
+import TodoApp from './Components/TodoApp/TodoApp'
+
 
 
 export class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <AddTodo />
+        <TodoApp />
       </div>
     )
   }
