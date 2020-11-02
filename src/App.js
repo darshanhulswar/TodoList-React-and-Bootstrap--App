@@ -1,15 +1,13 @@
-import React from 'react';
-import './App.css';
-import './Person/Person';
-import Person from './Person/Person';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello Here I'm Darshan</h1>
-      <Person />
-    </div>
-  );
+export class App extends Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
