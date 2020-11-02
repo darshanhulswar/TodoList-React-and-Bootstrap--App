@@ -34,8 +34,9 @@ export class TodoApp extends Component {
                     todo: 'Task Four',
                     isCompleted: false
                 }
-            ]
+            ],
         }
+
     }
 
     completeTask = (id) => {
@@ -50,12 +51,16 @@ export class TodoApp extends Component {
     }
 
     render() {
+        let remainingTasks = this.state.todos.filter(todo => !todo.isCompleted).length
+
         return (
             <div>
                 <Header />
                 <AddTodo />
-                <h2 className="h2 text-center mt-3 text-secondary">You have {this.state.todos.length} to do tasks in your list </h2>
-                <p className="lead text-center text-primary">Take up your task and complete it</p>
+                <h2
+                    className="h2 text-center mt-3 text-secondary">You have {remainingTasks} to do tasks in your list </h2>
+                <p
+                    className="lead text-center text-primary">Take up your task and complete it</p>
                 <div className="w-50 mx-auto mt-5">
                     {
                         this.state.todos.map(todo => (
