@@ -2,39 +2,16 @@ import React, { Component } from 'react'
 import Header from './../Header/Header';
 import AddTodo from './AddTodo'
 import Todo from './Todo'
+import { nanoid } from 'nanoid'
 
 export class TodoApp extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            todos: [
-                {
-                    id: 1,
-                    todo: 'Task One',
-                    isCompleted: false
-                },
-                {
-                    id: 2,
-                    todo: 'Task Two',
-                    isCompleted: false
-                },
-                {
-                    id: 3,
-                    todo: 'Task Three',
-                    isCompleted: false
-                },
-                {
-                    id: 4,
-                    todo: 'Task Four',
-                    isCompleted: true
-                },
-                {
-                    id: 5,
-                    todo: 'Task Four',
-                    isCompleted: false
-                }
-            ],
+            todos: [],
+
+            latestTodo: ''
         }
 
     }
@@ -50,13 +27,23 @@ export class TodoApp extends Component {
         this.setState({ todos })
     }
 
+    addTodoHandler = (todo) => {
+        const todoList = [...this.state.todos]
+        todoList.push({
+            id: nanoid(),
+            todo: todo,
+            isCompleted: false
+        })
+        this.setState({ todos: [...todoList] })
+    }
+
     render() {
         let remainingTasks = this.state.todos.filter(todo => !todo.isCompleted).length
 
         return (
             <div>
                 <Header />
-                <AddTodo />
+                <AddTodo addTodo={this.addTodoHandler} />
                 <h2
                     className="h2 text-center mt-3 text-secondary">You have {remainingTasks} to do tasks in your list </h2>
                 <p
