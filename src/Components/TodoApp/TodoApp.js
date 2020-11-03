@@ -48,7 +48,7 @@ export class TodoApp extends Component {
                     className="h2 text-center mt-3 text-secondary">You have {remainingTasks} to do tasks in your list </h2>
                 <p
                     className="lead text-center text-primary">Take up your task and complete it</p>
-                <div className="w-50 mx-auto mt-5">
+                <div className="container mt-5">
                     {
                         this.state.todos.map(todo => (
                             <Todo change={() => this.completeTask(todo.id)} key={todo.id} todo={todo.todo} id={todo.id} completed={todo.isCompleted} />

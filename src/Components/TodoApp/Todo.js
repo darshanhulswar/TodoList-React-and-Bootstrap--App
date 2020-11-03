@@ -16,23 +16,26 @@ function Todo(props) {
     }
 
     return (
-        <div
-            style={cursorStyle}
-            onClick={() => props.change(props.id)}
-            className={`${completedBgClass} w-50 mx-auto my-1 p-2 shadow rounded-sm text-secondary font-weight-bolder`}>
-            <span>
-                <input
-                    checked={props.completed}
-                    onChange={() => props.change(props.id)}
-                    id={props.id}
-                    type="checkbox"
-                    className="form-check d-inline-block mr-2" />
-            </span>
-            <span
-                className={completedClass}
-                style={styles}>
-                {props.todo}
-            </span>
+        <div className="w-50 mx-auto">
+            <div
+                style={cursorStyle}
+                onClick={() => props.change(props.id)}
+                className={`${completedBgClass} my-1 p-2 shadow rounded-sm text-secondary font-weight-bolder`}>
+                <span className="">
+                    <input
+                        required
+                        checked={props.completed}
+                        onChange={() => props.change(props.id)}
+                        id={props.id}
+                        type="checkbox"
+                        className="form-check d-inline-block mr-2" />
+                </span>
+                <span
+                    className={`${completedClass} text-wrap`}
+                    style={styles}>
+                    {props.todo}
+                </span>
+            </div>
         </div>
     )
 }

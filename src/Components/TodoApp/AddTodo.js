@@ -24,8 +24,8 @@ export class AddTodo extends Component {
     render() {
         return (
             <div className="container">
-                <form className="form-inline w-70 mx-auto" onSubmit={this.onSubmit}>
-                    <div className="form-group mx-auto">
+                <form className="form-inline" onSubmit={this.onSubmit}>
+                    <div className="form-group ml-auto">
                         <input
                             onChange={this.onChangeHandler}
                             className="form-control"
@@ -35,6 +35,9 @@ export class AddTodo extends Component {
                             autoComplete="off"
                             value={this.state.todoContent}
                         ></input>
+
+                    </div>
+                    <div className="form-group mr-auto">
                         <input
                             className="btn btn-primary ml-2"
                             type="submit"
