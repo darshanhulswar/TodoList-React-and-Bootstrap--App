@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Header from './../Header/Header';
 import AddTodo from './AddTodo'
 import Todo from './Todo'
+import Footer from './../Footer/Footer'
+
 import { nanoid } from 'nanoid'
 
 export class TodoApp extends Component {
@@ -55,6 +57,7 @@ export class TodoApp extends Component {
                         ))
                     }
                 </div>
+                <Footer />
             </div>
         )
     }
