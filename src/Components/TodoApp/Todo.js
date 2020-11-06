@@ -16,7 +16,7 @@ function Todo(props) {
     }
 
     return (
-        <div className="w-50 mx-auto">
+        <div className="w-70 mx-auto">
             <div
                 style={cursorStyle}
                 onClick={() => props.change(props.id)}
