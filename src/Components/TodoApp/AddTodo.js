@@ -1,53 +1,35 @@
-import React, { Component } from 'react'
+import React, { useState } from "react";
 
-export class AddTodo extends Component {
+export default function AddTodo(props) {
+  const [todoContent, setTodoContent] = useState("");
 
-    constructor(props) {
-        super(props)
+  function onChangeHandler(event) {
+    setTodoContent(event.target.value);
+  }
 
-        this.state = {
-            todoContent: ''
-        }
-    }
+  function onSubmitHandler(e) {
+    e.preventDefault();
+    console.log("Todo Submitted", todoContent);
+  }
 
-    onChangeHandler = event => {
-        this.setState({ todoContent: event.target.value })
-    }
-
-    onSubmit = e => {
-        this.props.addTodo(this.state.todoContent)
-        this.setState({ todoContent: '' })
-        e.preventDefault()
-    }
-
-
-    render() {
-        return (
-            <div className="container">
-                <form className="form-inline" onSubmit={this.onSubmit}>
-                    <div className="form-group ml-auto">
-                        <input
-                            onChange={this.onChangeHandler}
-                            className="form-control"
-                            type="text"
-                            name="todo"
-                            placeholder="Meeting with Boss..."
-                            autoComplete="off"
-                            value={this.state.todoContent}
-                        ></input>
-
-                    </div>
-                    <div className="form-group mr-auto">
-                        <input
-                            className="btn btn-primary ml-2"
-                            type="submit"
-                            value="Add"
-                        />
-                    </div>
-                </form>
-            </div>
-        )
-    }
+  return (
+    <div className="container">
+      <form className="form-inline" onSubmit={onSubmitHandler}>
+        <div className="form-group ml-auto">
+          <input
+            onChange={onChangeHandler}
+            value={todoContent}
+            className="form-control"
+            type="text"
+            name="todo"
+            placeholder="Meeting with Boss..."
+            autoComplete="off"
+          ></input>
+        </div>
+        <div className="form-group mr-auto">
+          <input className="btn btn-primary ml-2" type="submit" value="Add" />
+        </div>
+      </form>
+    </div>
+  );
 }
-
-export default AddTodo

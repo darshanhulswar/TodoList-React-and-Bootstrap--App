@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import TodoApp from './Components/TodoApp/TodoApp'
+import React, { Component } from "react";
+import TodoApp from "./Components/TodoApp/TodoApp";
 
 export class App extends Component {
   render() {
@@ -7,8 +7,8 @@ export class App extends Component {
       <div>
         <TodoApp />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
