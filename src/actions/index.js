@@ -1,46 +1,47 @@
 import * as actionTypes from "./todo.actions";
-import { nanoid } from "nanoid";
-import axios from "axios";
+import { storeTodo, getTodosCollection } from "../@config/firebase.config";
 
-function addTodo(text) {
+function addTodo() {
   return {
     type: actionTypes.ADD_TODO,
-    text: text,
-    id: nanoid(5),
   };
 }
 
-function completeTodo(id) {
+function storeInState(todos) {
+  console.log(todos);
   return {
-    type: actionTypes.ADD_TODO,
-    id: id,
+    type: actionTypes.STORE_TODOS_IN_STATE,
+    todoCollections: todos,
   };
 }
 
-function deleteTodo(id) {
-  return {
-    type: actionTypes.ADD_TODO,
-    id: id,
+function fetchAndStoreInTodosState() {
+  return async (dispatch) => {
+    const todos = getTodosCollection();
+    console.log(todos);
+    dispatch(storeInState(todos));
   };
 }
 
+// thunk to store todo in firestore
+function saveTodo(text) {
+  return (dispatch) => {
+    // storing firebase function ....
+    storeTodo(text);
+    dispatch(addTodo());
+  };
+}
+
+// thunk to fetch todos from firestore
 function fetchTodo() {
   console.log("inside fetchTodo()");
-  return function (dispatch) {
-    console.log("inside anonymous function(dispatch) {...}");
-    let data = null;
-    axios
-      .get("http://jsonplaceholder.typicode.com/todos/20")
-      .then(function (res) {
-        data = res.data;
-        console.log(data);
-        dispatch(addTodo(data.title));
-        console.log("action dispatch done...");
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  return function (dispatch) {};
 }
 
-export { addTodo, completeTodo, deleteTodo, fetchTodo };
+export {
+  addTodo,
+  fetchTodo,
+  saveTodo,
+  fetchAndStoreInTodosState,
+  storeInState,
+};

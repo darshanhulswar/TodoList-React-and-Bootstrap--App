@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function AddTodo(props) {
   const [todoContent, setTodoContent] = useState("");
+  const dispatch = useDispatch();
 
   function onChangeHandler(event) {
     setTodoContent(event.target.value);
@@ -9,7 +11,7 @@ export default function AddTodo(props) {
 
   function onSubmitHandler(e) {
     e.preventDefault();
-    console.log("Todo Submitted", todoContent);
+    setTodoContent("");
   }
 
   return (
@@ -24,6 +26,7 @@ export default function AddTodo(props) {
             name="todo"
             placeholder="Meeting with Boss..."
             autoComplete="off"
+            required
           ></input>
         </div>
         <div className="form-group mr-auto">

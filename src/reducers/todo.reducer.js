@@ -2,9 +2,9 @@ import * as actionTypes from "../actions/todo.actions";
 
 const initialState = {
   todos: [],
-  totalTodos: 0,
-  completedTodos: 0,
-  incompleteTodos: 0,
+  todoStoredStatus: false,
+  fetchingTodo: false,
+  todoFetchCompleteStatus: false,
 };
 
 export function reducer(state = initialState, action) {
@@ -12,24 +12,20 @@ export function reducer(state = initialState, action) {
     case actionTypes.ADD_TODO:
       return {
         ...state,
-        todos: [
-          ...state.todos,
-          { id: action.id, text: action.text, isCompleted: false },
-        ],
-      };
-    case actionTypes.COMPLETE_TODO:
-      return {
-        ...state,
+        todoStoredStatus: true,
       };
 
-    case actionTypes.DELETE_TODO:
+    case actionTypes.STORE_TODOS_IN_STATE:
+      console.log(action.todoCollections);
       return {
         ...state,
+        todos: [...state.todos, 1, ...action.todoCollections, 2],
       };
 
     case actionTypes.FETCH_TODO:
       return {
         ...state,
+        todoFetchCompleteStatus: true,
       };
 
     default:
