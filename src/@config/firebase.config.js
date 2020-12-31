@@ -26,14 +26,12 @@ const firebaseConfig = {
 const _f = firebase.initializeApp(firebaseConfig);
 const firestoreDb = firebase.firestore();
 
-const getTodosCollection = () => {
-  const todos = [];
-
+const fetchTodos = () => {
   return firestoreDb
     .collection("todos")
     .get()
     .then((snapshot) => {
-      snapshot.forEach((data) => todos.push(data.data()));
+      snapshot.forEach((data) => console.log(data.data()));
     })
     .catch((err) => console.log(err.message));
 };
@@ -48,4 +46,4 @@ const storeTodo = (text) => {
     .catch((err) => err.message);
 };
 
-export { _f, firestoreDb, getTodosCollection, storeTodo };
+export { _f, firestoreDb, fetchTodos, storeTodo };
