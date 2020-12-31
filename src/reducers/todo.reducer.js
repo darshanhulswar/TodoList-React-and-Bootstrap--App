@@ -1,34 +1,40 @@
-import * as actionTypes from "../actions/todo.actions";
+import * as actionTypes from "../actions/todo.actionTypes";
 
 const initialState = {
   todos: [],
-  todoStoredStatus: false,
-  fetchingTodo: false,
-  todoFetchCompleteStatus: false,
+  requestAddTodo: false,
+  requestTodos: false,
 };
 
-export function reducer(state = initialState, action) {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD_TODO:
+    case actionTypes.ADD_TODO_REQUEST:
       return {
         ...state,
-        todoStoredStatus: true,
+        requestAddTodo: true,
       };
 
-    case actionTypes.STORE_TODOS_IN_STATE:
-      console.log(action.todoCollections);
+    case actionTypes.ADD_TODO_RESPONSE:
       return {
         ...state,
-        todos: [...state.todos, 1, ...action.todoCollections, 2],
+        requestAddTodo: false,
       };
 
-    case actionTypes.FETCH_TODO:
+    case actionTypes.TODOS_REQUEST:
       return {
         ...state,
-        todoFetchCompleteStatus: true,
+        requestTodos: true,
+      };
+
+    case actionTypes.TODOS_RESPONSE:
+      return {
+        ...state,
+        requestTodos: false,
       };
 
     default:
       return state;
   }
-}
+};
+
+export { reducer };

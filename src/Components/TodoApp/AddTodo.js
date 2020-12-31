@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { addTodo } from "../../actions/index";
 
 export default function AddTodo(props) {
   const [todoContent, setTodoContent] = useState("");
@@ -11,6 +12,7 @@ export default function AddTodo(props) {
 
   function onSubmitHandler(e) {
     e.preventDefault();
+    dispatch(addTodo(todoContent));
     setTodoContent("");
   }
 

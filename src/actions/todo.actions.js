@@ -1,4 +1,0 @@
-const FETCH_TODOS = "FETCH_TODOS";
-const STORE_TODO = "STORE_TODO";
-
-export { FETCH_TODOS, STORE_TODO };
