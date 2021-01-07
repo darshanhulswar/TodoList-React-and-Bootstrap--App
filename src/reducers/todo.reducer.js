@@ -29,6 +29,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.TODOS_RESPONSE:
       return {
         ...state,
+        todos: [...action.todos],
         requestTodos: false,
       };
 

@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./../Header/Header";
 import AddTodo from "./AddTodo";
-// import Todo from "./Todo";
+import Todo from "./Todo";
 import Footer from "./../Footer/Footer";
-import { getTodos } from "../../actions/index";
+import { getTodos } from "../../actions/todo.actions";
 
 export default function TodoApp() {
   const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos);
 
   useEffect(() => {
     dispatch(getTodos());
-  });
+  }, [dispatch]);
 
   return (
     <div>
@@ -20,7 +21,9 @@ export default function TodoApp() {
       <p className="lead text-center text-primary">
         Take up your task and complete
       </p>
-      {/* <Todo /> */}
+      {todos.map((todo) => (
+        <Todo {...todo} key={todo.id} />
+      ))}
       <Footer />
     </div>
   );

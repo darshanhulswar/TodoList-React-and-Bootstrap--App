@@ -7,12 +7,16 @@ function Todo(props) {
   let cursorStyle = {
     cursor: "pointer",
   };
-  if (props.completed) {
+  if (props.isCompleted) {
     styles = {
       textDecoration: "line-through",
     };
     completedClass = "text-success";
     completedBgClass = "bg-dark";
+  }
+
+  function changeHandler(id) {
+    console.log(`Todo with id ${id} completed`);
   }
 
   return (
@@ -23,15 +27,17 @@ function Todo(props) {
       >
         <span className="">
           <input
+            style={{ styles }}
             required
-            checked={props.completed}
+            checked={props.isCompleted}
+            onChange={() => changeHandler(props.id)}
             id={props.id}
             type="checkbox"
             className="form-check d-inline-block mr-2"
           />
         </span>
         <span className={`${completedClass} text-wrap`} style={styles}>
-          {props.todo}
+          {props.text}
         </span>
       </div>
     </div>

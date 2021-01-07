@@ -10,10 +10,10 @@ function addTodo(todoText) {
 }
 
 function getTodos() {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({ type: actionTypes.TODOS_REQUEST });
-    fetchTodos();
-    dispatch({ type: actionTypes.TODOS_RESPONSE });
+    const todos = await fetchTodos();
+    dispatch({ type: actionTypes.TODOS_RESPONSE, todos });
   };
 }
 

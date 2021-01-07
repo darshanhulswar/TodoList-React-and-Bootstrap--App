@@ -26,20 +26,22 @@ const firebaseConfig = {
 const _f = firebase.initializeApp(firebaseConfig);
 const firestoreDb = firebase.firestore();
 
-const fetchTodos = () => {
-  return firestoreDb
+const fetchTodos = async () => {
+  const todos = [];
+  await firestoreDb
     .collection("todos")
     .get()
     .then((snapshot) => {
-      snapshot.forEach((data) => console.log(data.data()));
+      snapshot.forEach((data) => todos.push(data.data()));
     })
     .catch((err) => console.log(err.message));
+  return todos;
 };
 
 const storeTodo = (text) => {
   firestoreDb
     .collection("todos")
-    .add({ id: nanoid(5), text: text, isCompeted: false })
+    .add({ id: nanoid(5), text: text, isCompleted: false })
     .then((response) => {
       console.log("Todo stored in firestore....");
     })
