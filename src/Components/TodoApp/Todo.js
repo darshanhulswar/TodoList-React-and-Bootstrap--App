@@ -20,7 +20,7 @@ function Todo(props) {
   }
 
   return (
-    <div className="w-70 mx-auto">
+    <div className="w-50 mx-auto">
       <div
         style={cursorStyle}
         className={`${completedBgClass} my-1 p-2 shadow rounded-sm text-secondary font-weight-bolder`}
